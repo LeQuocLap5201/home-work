@@ -1,6 +1,6 @@
 const createStore = (reducer, preState) => {
   let state = preState;
-  let listeners = [];
+  const listeners = [];
 
   const getState = () => state;
 

@@ -7,14 +7,12 @@ export const useSelector = (selector) => {
   const [state, setState] = useState(() => selector(store.getState()));
 
   useEffect(() => {
-    const unsubscribe = store.subscribe(() => {
-      const newState = selector(store.getState());
-      setState(newState);
-    });
+    const unsubscribe = store.subscribe(() =>
+      setState(selector(store.getState()))
+    );
 
     return () => unsubscribe;
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [selector]);
 
   return state;
 };
